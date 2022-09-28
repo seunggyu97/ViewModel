@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">ViewModelDemo2</string>
+    <string name="inputNum">숫자를 입력하세요</string>
+    <string name="inputButton">입력</string>
+</resources>
