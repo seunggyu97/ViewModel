@@ -9,21 +9,21 @@ import com.anushka.viewmodeldemo2.databinding.ActivityMainBinding
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
-    private lateinit var viewModel: MainActivityViewModel
-
+    private lateinit var viewModel: MainActivityViewModel // ViewModel
+    private lateinit var viewModelFactory: MainActivityViewModelFactory // ViewModelFactory
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
-        viewModel = ViewModelProvider(this).get(MainActivityViewModel::class.java)
+        viewModelFactory = MainActivityViewModelFactory(1000)
+        viewModel = ViewModelProvider(this, viewModelFactory).get(MainActivityViewModel::class.java)
 
         binding.apply {
             tvTotal.text = viewModel.getTotal().toString()
 
             btnInput.setOnClickListener {
                 viewModel.setTotal(binding.etNum.text.toString().toInt())
-                binding.tvTotal.text = "합계 : ${viewModel.getTotal()}"
+                tvTotal.text = viewModel.getTotal().toString()
             }
         }
     }
-
 }
